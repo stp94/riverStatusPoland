@@ -1,0 +1,49 @@
+
+.SearchBar, li{
+
+  float: left;
+  list-style: none;
+  padding-left: 5px;
+
+
+}
+
+.TopSearch, .searchButton{
+  position: absolute;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+
+}
+
+.infoField_down {
+  text-align: center;
+}
+
+.searchButton{
+  margin-top: 20px;
+}
+
+
+.inputField {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.inputField-full-width {
+  width: 100%;
+}
+
+.searchButton {
+  background-color: bisque;
+}
+
+.logo {
+  margin-left: 10px;
+}
+
+.infoField{
+  text-align: center;
+}
