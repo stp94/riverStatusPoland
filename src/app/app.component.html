@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<meta charset="UTF-8">
 <div style="text-align:center" class="Content" xmlns:padding-top="http://www.w3.org/1999/xhtml">
   <ul>
     <li>
@@ -26,41 +27,63 @@
         </form>
       </li>
 
+    <li>
+      <form>
+        <mat-form-field class="inputField-full-width">
+          <mat-autocomplete #riverAutoComplete="matAutocomplete">
+            <mat-option *ngFor="let option of riverOptions" [value]="option">{{option}}</mat-option>
+          </mat-autocomplete>
+
+          <mat-label>Wybierz rzeke</mat-label>
+          <label>
+            <input matInput [(ngModel)]="river" [matAutocomplete]="riverAutoComplete" name="inputState">
+          </label>
+        </mat-form-field>
+      </form>
+    </li>
+
         <li>
           <button (click)="searchRiver()" mat-button class="searchButton"> Szukaj! </button>
         </li>
 
-        <li>
-
-
-            <mat-table mat-table [dataSource]="dataSource" matSort>
-              <ng-container matColumnDef="stacja" >
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Stacja </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.stacja}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="rzeka" >
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Rzeka </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.rzeka}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="stan">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Stan </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.stan_wody}} </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;">
-              </mat-row>
-
-            </mat-table>
-
-
-        </li>
-
-
       </ul>
 
   </div>
+
+<div class="TableContent">
+
+  <mat-table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="stacja" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Stacja </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.stacja}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rzeka" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Rzeka </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rzeka}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stan">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Stan </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.stan_wody}} cm </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="temp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Temperatura** </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.temperatura_wody}}  </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Data pomiaru </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.stan_wody_data_pomiaru}}  </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+
+  </mat-table>
+
+</div>
 
 

@@ -2,12 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 
-export interface PeriodicElement {
-  stacja: string;
-  województwo: string;
-  rzeka: string;
-  stan_wody: number;
-}
+
 
 @Component({
   selector: 'app-root',
@@ -15,14 +10,14 @@ export interface PeriodicElement {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Twoja rzeka';
+
   station = '';
   state = '';
   river = '';
 
   arrRivers: string [];
   filteredArrRivers: string[] = ['empty'];
-  displayedColumns: string[] = ['stacja', 'rzeka', 'stan'];
+  displayedColumns: string[] = ['stacja', 'rzeka', 'stan', 'temp', 'data'];
 
   stationOptions: string[] = [];
   stateOptions: string[] = [];
@@ -52,29 +47,35 @@ export class AppComponent implements OnInit{
         this.arrRivers = data as string [];
         for (let i = 0; i < this.arrRivers.length; i++) {
           if (!this.stationOptions.includes(this.arrRivers[i].stacja)) {
-            this.stationOptions.push(this.arrRivers[i].stacja as string);
+            this.stationOptions.push(this.arrRivers[i].stacja);
           }
           if (!this.stateOptions.includes(this.arrRivers[i].województwo)) {
-            this.stateOptions.push(this.arrRivers[i].województwo as string);
+            this.stateOptions.push(this.arrRivers[i].województwo);
           }
           if (!this.riverOptions.includes(this.arrRivers[i].rzeka)) {
-            this.riverOptions.push(this.arrRivers[i].rzeka as string);
+            this.riverOptions.push(this.arrRivers[i].rzeka);
           }
         }
+        this.stateOptions.sort((a, b) => a.localeCompare(b));
+        this.riverOptions.sort((a, b) => a.localeCompare(b));
       }
     );
   }
 
   searchRiver() {
+
+    this.dataSource = new MatTableDataSource([]);
+    this.filteredArrRivers = [];
+
     this.httpService.get('./assets/json/response.json').subscribe(
       data => {
         this.arrRivers = data as string[];
       }
     );
-
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.arrRivers.length; i++){
       // @ts-ignore
-      if (this.state === this.arrRivers[i].województwo){
+      if (this.state === this.arrRivers[i].województwo && this.river === this.arrRivers[i].rzeka){
         this.filteredArrRivers.push(this.arrRivers[i]);
       }
     }
