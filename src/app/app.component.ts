@@ -46,13 +46,19 @@ export class AppComponent implements OnInit{
       data => {
         this.arrRivers = data as string [];
         for (let i = 0; i < this.arrRivers.length; i++) {
+          // @ts-ignore
           if (!this.stationOptions.includes(this.arrRivers[i].stacja)) {
+            // @ts-ignore
             this.stationOptions.push(this.arrRivers[i].stacja);
           }
+          // @ts-ignore
           if (!this.stateOptions.includes(this.arrRivers[i].województwo)) {
+            // @ts-ignore
             this.stateOptions.push(this.arrRivers[i].województwo);
           }
+          // @ts-ignore
           if (!this.riverOptions.includes(this.arrRivers[i].rzeka)) {
+            // @ts-ignore
             this.riverOptions.push(this.arrRivers[i].rzeka);
           }
         }
