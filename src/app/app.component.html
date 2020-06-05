@@ -1,56 +1,66 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Witaj w {{ title }}!
-  </h1>
-  <img width="200" class="logo" alt="Angular Logo" src="/assets/img/logosea.png">
-</div>
+<div style="text-align:center" class="Content" xmlns:padding-top="http://www.w3.org/1999/xhtml">
+  <ul>
+    <li>
+      <h1>Sprawdź stan rzeki!</h1>
 
-  <div class="TopSearch">
-    <ul>
-      <h2 class="infoField">Określ szukane miejsce </h2>
-      <p class="infoField_down">Podaj conajmniej jeden parametr</p>
+    </li>
 
-    </ul>
+    <li>
+        <img width="200" class="logo" alt="Angular Logo" src="/assets/img/logosea.png">
+    </li>
 
-    <ul class="SearchBar">
+
       <li>
-        <form class="inputField">
+        <form>
           <mat-form-field class="inputField-full-width">
-            <mat-label>Stacja: </mat-label>
+            <mat-autocomplete #stateAutoComplete="matAutocomplete">
+              <mat-option *ngFor="let option of stateOptions" [value]="option">{{option}}</mat-option>
+            </mat-autocomplete>
+
+            <mat-label>Wybierz województwo </mat-label>
             <label>
-              <input matInput [(ngModel)]="station" name="inputStation">
+              <input matInput [(ngModel)]="state" [matAutocomplete]="stateAutoComplete" name="inputState">
             </label>
           </mat-form-field>
         </form>
       </li>
 
-      <li>
-        <form class="inputField">
-          <mat-form-field class="inputField-full-width">
-            <mat-label>Województwo: </mat-label>
-            <label>
-              <input matInput [(ngModel)]="state" name="inputState">
-            </label>
-          </mat-form-field>
-        </form>
-      </li>
-
-      <li>
-        <form class="inputField">
-          <mat-form-field class="inputField-full-width">
-            <mat-label>Rzeka: </mat-label>
-            <label>
-              <input matInput [(ngModel)]="river" name="inputRiver">
-            </label>
-          </mat-form-field>
-        </form>
-      </li>
-
-      <ul>
         <li>
           <button (click)="searchRiver()" mat-button class="searchButton"> Szukaj! </button>
         </li>
+
+        <li>
+
+
+            <mat-table mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="stacja" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Stacja </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.stacja}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="rzeka" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Rzeka </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.rzeka}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="stan">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Stan </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.stan_wody}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;">
+              </mat-row>
+
+            </mat-table>
+
+
+        </li>
+
+
       </ul>
-    </ul>
+
   </div>
+
+
