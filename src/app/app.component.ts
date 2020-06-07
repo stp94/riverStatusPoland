@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
     this.dataSource = new MatTableDataSource([]);
     this.filteredArrRivers = [];
 
-    this.httpService.get('./assets/json/response.json').subscribe(
+    this.httpService.get('http://danepubliczne.imgw.pl/api/data/hydro/').subscribe(
       data => {
         this.arrRivers = data as string[];
       }
