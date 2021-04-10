@@ -8,17 +8,88 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 10px;
+
 }
-
-
-
 .searchButton {
   background-color: bisque;
 }
 
 .mat-table {
   width: auto;
+}
+
+.mat-cell{
+  font-size: 10pt;
+  margin-right: 2pt;
+}
+
+.mat-toolbar {
+  background-color: #4ba3c7;
+  margin: 0 auto; font-family: Chau, "Philomene One", sans-serif;
+  color: white;
+  text-align: center;
+
+}
+
+.items {
+  text-align: right;
+  color: black;
+  flex: 1 1 auto;
+}
+
+.mat-form-field{
+
+
+  justify-content: center;
+
+
+}
+
+.ul{
+  width: 100%;
+}
+
+.mat-label {
+  align-self: center;
+}
+
+.mat-display-1{
+  text-align: center;
+  font-size: 12px;
+
+
+
+}
+
+
+.button-search{
+  text-align: center;
+
+}
+
+.TableContent {
+  margin-left: 1%;
+  margin-top: 3%;
+  margin-right: 1%;
+
+}
+
+.mat-elevation-z2{
+  width: 100%;
+
+}
+
+.mat-tab-group{
+  margin-top: 5%;
+  align-items: center;
+  width: 100%;
+
+}
+
+.river-chart {
+  height: 400px;
+  margin-bottom: 5%;
+
 }
 
 

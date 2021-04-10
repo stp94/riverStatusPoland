@@ -11,23 +11,33 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
+import {NgxEchartsModule} from 'ngx-echarts';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ChartComponent
   ],
-  imports: [
-    BrowserModule,
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatAutocompleteModule,
-    MatTableModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatAutocompleteModule,
+        MatTableModule,
+        MatSortModule,
+        MatToolbarModule,
+        MatTabsModule,
+        NgxEchartsModule.forRoot({
+          echarts: () => import('echarts'),
+        }),
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,96 +1,94 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <meta charset="UTF-8">
-<div style="text-align:center" class="Content" xmlns:padding-top="http://www.w3.org/1999/xhtml">
-  <ul>
-    <li>
-      <h1>Sprawdź stan rzeki!</h1>
 
-    </li>
+<mat-toolbar>
 
-    <li>
-        <img width="200" class="logo" alt="Angular Logo" src="https://raw.githubusercontent.com/stp94/untitled1/master/docs/assets/img/logosea.png">
-    </li>
+  <span>RiverStatusPoland</span>
 
+  <span class="items"> ITEMS </span>
 
-      <li>
-        <form>
-          <mat-form-field class="inputField-full-width">
-            <mat-autocomplete #stateAutoComplete="matAutocomplete">
-              <mat-option *ngFor="let option of stateOptions" [value]="option">{{option}}</mat-option>
-            </mat-autocomplete>
+</mat-toolbar>
+{{this.state}}
+<mat-form-field [style.width.%]="100"  >
+  <mat-autocomplete #stateAutoComplete="matAutocomplete">
+    <mat-option *ngFor="let option of stateOptions" [value]="option">{{option}}</mat-option>
+  </mat-autocomplete>
 
-            <mat-label>Wybierz województwo </mat-label>
-            <label>
-              <input matInput [(ngModel)]="state" [matAutocomplete]="stateAutoComplete" name="inputState">
-            </label>
-          </mat-form-field>
-        </form>
-      </li>
+  <mat-label>Wybierz województwo </mat-label>
+  <label>
+    <input matInput [(ngModel)]="state" [matAutocomplete]="stateAutoComplete" name="inputState">
+  </label>
+</mat-form-field>
 
-    <li>
-      <form>
-        <mat-form-field class="inputField-full-width">
-          <mat-autocomplete #riverAutoComplete="matAutocomplete">
-            <mat-option *ngFor="let option of riverOptions" [value]="option">{{option}}</mat-option>
-          </mat-autocomplete>
+<mat-form-field [style.width.%]="100" (click)="this.fillOptions()" >
+  <mat-autocomplete #riverAutoComplete="matAutocomplete">
+    <mat-option *ngFor="let option of riverOptions" [value]="option">{{option}}</mat-option>
+  </mat-autocomplete>
 
-          <mat-label>Wybierz rzeke</mat-label>
-          <label>
-            <input matInput [(ngModel)]="river" [matAutocomplete]="riverAutoComplete" name="inputState">
-          </label>
-        </mat-form-field>
-      </form>
-    </li>
+  <mat-label>Wybierz rzeke</mat-label>
+  <label>
+    <input matInput [(ngModel)]="river" [matAutocomplete]="riverAutoComplete" name="inputState">
+  </label>
+</mat-form-field>
 
-        <li>
-          <button (click)="searchRiver()" mat-button class="searchButton"> Szukaj! </button>
-        </li>
+<div class="mat-display-1">
 
-      <li>
-        <p>Źródłem pochodzenia danych jest Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy
-          </p>
-      </li>
-    <li><p>Dane Instytutu Meteorologii i Gospodarki Wodnej – Państwowego Instytutu Badawczego zostały przetworzone</p></li>
-
-
-      </ul>
-
-  </div>
-
-<div class="TableContent">
-
-  <mat-table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="stacja" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Stacja </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.stacja}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="rzeka" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Rzeka </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.rzeka}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="stan">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Stan </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.stan_wody}} cm </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="temp">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Temperatura** </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.temperatura_wody}}  </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="data">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Data pomiaru </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.stan_wody_data_pomiaru}}  </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
-
-  </mat-table>
+    <p>Źródłem pochodzenia danych jest Instytut Meteorologii i Gospodarki Wodnej – Państwowy Instytut Badawczy
+    </p>
+    <p>Dane Instytutu Meteorologii i Gospodarki Wodnej – Państwowego Instytutu Badawczego zostały przetworzone
+    </p>
 
 </div>
+
+
+<div class="button-search"> <button  (click)="searchRiver()" mat-button class="searchButton"> Szukaj! </button> </div>
+
+<mat-tab-group class="mat-elevation-z2">
+  <mat-tab label="Dane" >
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
+        <ng-container matColumnDef="stacja" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Stacja </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.stacja}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rzeka" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Rzeka </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.rzeka}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="stan">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Stan </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.stan_wody}} cm </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="temp">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Temperatura** </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.temperatura_wody}}  </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Data pomiaru </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.stan_wody_data_pomiaru}}  </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+
+      </table>
+
+
+
+
+  </mat-tab>
+  <mat-tab label="Wykres">
+
+    <app-chart></app-chart>
+
+  </mat-tab>
+</mat-tab-group>
+
+
+
 
 
